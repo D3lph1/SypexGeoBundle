@@ -28,7 +28,7 @@
         "ext-zip": "*",
         "guzzlehttp/guzzle": "^6.0|^7.0",
         "symfony/framework-bundle": "^6.0",
-        "yamilovs/sypex-geo": "patch-1#e441244ef17bd6c602d11a2b1c3de7c04fda46ff"
+        "yamilovs/sypex-geo": "dev-patch-1#e441244ef17bd6c602d11a2b1c3de7c04fda46ff"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.3|^9.5",
