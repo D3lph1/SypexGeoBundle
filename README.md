@@ -1,100 +1,29 @@
-[![Build Status](https://travis-ci.org/yamilovs/SypexGeoBundle.svg?branch=master)](https://travis-ci.org/yamilovs/SypexGeoBundle)
+# Modification of SypexGeoBundle requirements for Symfony 6
 
-SypexGeoBundle
-==============
+For the bundle documentation itself see the [original repository](https://github.com/yamilovs/SypexGeoBundle).
 
-This is an adaptation of [Sypex Geo Library](https://github.com/yamilovs/SypexGeo) for Symfony.
- 
-Installation
-------------
+## Installation of fork
 
-### Step 1: Download SypexGeoBundle using composer
+Change `composer.json`'s `minimum-stability` and `repositories` section:
+```diff
+{
++   "minimum-stability": "dev",
++   "repositories": [
++       {
++           "type": "vcs",
++           "url": "https://github.com/D3lph1/SypexGeoBundle.git"
++       },
++       {
++           "type": "vcs",
++           "url": "https://github.com/gam6itko/SypexGeo.git"
++       }
++   ]
+}
+```
 
-Add SypexGeoBundle by running the command:
-
+Run the following command:
 ```bash
-$ composer require yamilovs/sypex-geo-bundle:^2.0
+composer require yamilovs/sypex-geo-bundle
 ```
 
-### Step 2: Enable the bundle
-
-Enable the bundle in the kernel:
-
-```php
-<?php
-// app/AppKernel.php
-
-public function registerBundles()
-{
-    $bundles = array(
-        // ...
-        new Yamilovs\Bundle\SypexGeoBundle\SypexGeoBundle(),
-    );
-}
-```
-
-### Step 3: Add some configurations
-
-```yaml
-# app/config/config.yml
-
-yamilovs_sypex_geo:
-    mode: FILE # FILE (default) | BATCH | MEMORY
-    database_path: "%kernel.root_dir%/../var/SypexGeoDatabase/SxGeoCity.dat"
-```
-
-If you need the proxy configuration for database update, you can add:
-```yaml
-yamilovs_sypex_geo:
-    ......
-    connection:
-        proxy:
-            host: 'xxx.xxx.xxx.xxx'
-            port: # port number
-            
-            # You can enable user credentials if you have them
-            auth:
-                user: 'your username'
-                password: 'your password'
-```
-
-
-### Step 4: Download necessary databases
-
-Download necessary databases to `database_path`. 
-- You can run `php bin/console yamilovs:sypex-geo:update-database-file`
-- Or download it manually from [Sypex Geo City](https://sypexgeo.net/files/SxGeoCity_utf8.zip)
-
-Usage
------
-
-### In your controller
-```php
-<?php
-// src/Controller/FooController.php
-namespace App\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Yamilovs\SypexGeo\SypexGeo;
-
-class FooController extends Controller
-{
-    public function fooAction(Request $request, SypexGeo $sypexGeo)
-    {
-        $userIp = $request->getClientIp();
-        $testIp = '88.86.218.24';
-
-        $city = $sypexGeo->getCity($testIp, true);
-
-        dump($city);
-    }
-}
-```
-
-**Note:**
-
-> Your local ip address is 127.0.0.1 and Sypex Geo cant get your city or country!
-
-### If you want to check data from specific IP address
-You can run `php bin/console yamilovs:sypex-geo:get-ip-data aa.bb.cc.dd`
+Composer will install version from `dev-master` branch of this repository. It also will use [patch-1#e441244ef17bd6c602d11a2b1c3de7c04fda46ff](https://github.com/gam6itko/SypexGeo/commit/e441244ef17bd6c602d11a2b1c3de7c04fda46ff) version (enables PHP 8+ support) of [yamilovs/sypex-geo](https://github.com/yamilovs/SypexGeo).
