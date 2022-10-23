@@ -34,12 +34,6 @@
         "phpunit/phpunit": "^8.3|^9.5",
         "symfony/console": "^6.0"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/gam6itko/SypexGeo.git"
-        }
-    ],
     "config": {
         "sort-packages": true
     }
