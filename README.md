@@ -21,9 +21,19 @@ Change `composer.json`'s `minimum-stability` and `repositories` section:
 }
 ```
 
-Run the following command:
+Run command to install bundle:
 ```bash
 composer require yamilovs/sypex-geo-bundle
 ```
 
 Composer will install version from `dev-master` branch of this repository. It also will use [patch-1#e441244ef17bd6c602d11a2b1c3de7c04fda46ff](https://github.com/gam6itko/SypexGeo/commit/e441244ef17bd6c602d11a2b1c3de7c04fda46ff) version (enables PHP 8+ support) of [yamilovs/sypex-geo](https://github.com/yamilovs/SypexGeo).
+
+## Configuration
+
+Do not forget to create configuration file `config/packages/yamilovs_sypex_geo.yaml` with the following content:
+
+```yaml
+yamilovs_sypex_geo:
+    mode: FILE # FILE (default) | BATCH | MEMORY
+    database_path: "%kernel.project_dir%/var/sypex_geo_database/sx_geo_city.dat"
+```
